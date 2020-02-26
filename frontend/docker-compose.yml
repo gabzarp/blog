@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+
+  blog-frontend:
+    container_name: blog-frontend
+    build: .
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    ports:
+      - '3000:8080'

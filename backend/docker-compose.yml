@@ -1,0 +1,27 @@
+version: '3.7'
+services:
+    # Our web application (will be available on http://localhost:3000)
+    blog-backend: 
+        build: .
+        volumes:
+          - ".:/app" # current directory on host OS will be mapped as /src/app on the container
+          - '/app/node_modules'
+        ports: 
+            - "3001:3001" # open access to port 3000
+        depends_on:
+            - mongo # Mongo DB will be started before this app
+        environment:
+            - PORT=27017
+            - DATABASE_URL=blogdb://mongo/blogdb # Mongo db is available on host 'mongo' in this private network.
+
+    # Mongo DB
+    mongo:
+        container_name: mongo
+
+        image: mongo # Use official image with latest mongo db
+        environment:
+            - MONGO_INITDB_DATABASE=blogdb
+        ports:
+          - 27017:27017
+        volumes:
+            - ./db:/data # to store databases in host OS directory ./db
