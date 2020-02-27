@@ -7,13 +7,13 @@
           <div class="collapse navbar-collapse justify-content-md-center pr-5" id="navbarMenuOpts" data-parent="#accordionMenuOpts">
             <ul class="navbar-nav d-none d-md-flex font-weight-bold">
               <li class="nav-item">
-                <router-link to="/login" class="nav-link navbar-nav-principal-link text-dark text-uppercase h3">Login</router-link>
-              </li>
-              <li class="nav-item">
-                <router-link to="/" class="nav-link navbar-nav-principal-link text-dark text-uppercase h3">Posts</router-link>
+                <router-link to="/" class="nav-link navbar-nav-principal-link text-dark text-uppercase h3">Home</router-link>
               </li>
               <li class="nav-item">
                 <router-link to="/users" class="nav-link navbar-nav-principal-link text-dark text-uppercase h3">Users</router-link>
+              </li>
+              <li class="nav-item">
+                <router-link to="/login" class="nav-link navbar-nav-principal-link text-dark text-uppercase h3">Login</router-link>
               </li>
             </ul>
           </div>
@@ -25,7 +25,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'App',
   
@@ -41,6 +40,11 @@ export default {
   }
   .bg-purple{
     background: #946694;
-
+  }
+  .text-purple{
+    color: #946694;      
+  }
+  a:hover{
+    color: #694869 !important;      
   }
 </style>
