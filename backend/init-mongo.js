@@ -37,5 +37,3 @@ db.createCollection( 'user',{
      }
   }
 );
-print("teste executou")
-console.log('Error, exiting')
