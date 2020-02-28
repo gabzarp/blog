@@ -11,11 +11,17 @@ Vue.prototype.axios = axios
 
 import Home from './components/Home.vue'
 import Login from './components/Login.vue'
+import Signup from './components/Signup.vue'
+import Profile from './components/Profile.vue'
+import Users from './components/Users.vue'
 
 Vue.config.productionTip = false
 const routes = [
   { path: '/', component: Home },
   { path: '/login', component: Login },
+  { path: '/signup', component: Signup },
+  { path: '/user/:id', component: Profile },
+  { path: '/users', component: Users },
 ]
 const router = new VueRouter({routes})
 

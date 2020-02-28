@@ -3,7 +3,12 @@
     <section class='bg-purple'>
       <div class="container pt-4 bg-white">
         <div class="row">
-          <div v-for="post in posts" class="col-md-12 pb-5" :key="post.id">
+          <div class="col-12 form-group">
+            <input type="text" v-on:keyup="search" class="form-control" placeholder="Search">
+          </div>
+        </div>
+        <div class="row">
+          <div v-for="post in posts" class="col-12 pb-5" :key="post.id">
             <div>              
               <h3>{{post.title}}</h3>
               <p>{{post.text}}</p>
@@ -32,6 +37,11 @@ export default {
     .get('http://localhost:3001/posts')
     .then(response => {this.posts = response.data})
     .catch(err=>console.log(err))
+  },
+  methods: {
+    search: function () {
+      console.log('teste')
+    }
   }
 }
 </script>
