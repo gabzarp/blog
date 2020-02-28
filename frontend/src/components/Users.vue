@@ -15,7 +15,7 @@
                     <th>{{user.email}}</th>
                     <th>{{user.role}}</th>
                     <th class="d-flex justify-content-center">
-                        <router-link :to="'/user/'+user.id"  class='button border-0 bg-info text-dark px-2 py-1'>Edit</router-link>
+                        <router-link :to="'/user/'+user._id"  class='button border-0 bg-info text-dark px-2 py-1'>Edit</router-link>
                     </th>
                 </tr>
             </table>
@@ -33,16 +33,13 @@ export default {
   },
   data () {
     return {
-      users: [
-          {id:2,name:'gabriel',email:'zarpelon091098@gmail.com',role:'user'},
-          {id:2,name:'gabriel',email:'zarpelon091098@gmail.com',role:'user'}
-      ]
+      users: []
     }
   },
   mounted () {
     this.axios
-    .get('http://localhost:3001/posts')
-    .then(response => {this.posts = response.data})
+    .get('http://localhost:3001/users')
+    .then(response => {this.users = response.data})
     .catch(err=>console.log(err))
   }
 }

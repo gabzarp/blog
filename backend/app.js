@@ -29,13 +29,16 @@ app.use(logger());
 router.post('/login', user.login)
     .get('/users', user.getAllUsers)
     .post('/user', user.createUser)
+    .get('/user/:id', user.getUserById)
     .put('/user/:id', user.updateUser)
     .delete('/user/:id', user.deleteUser)
 
     .get('/posts', post.getAllPosts)
     .post('/post', post.createPost)
+    .get('/post/:id', post.getPostById)
     .put('/post/:id', post.updatePost)
     .delete('/post/:id', post.deletePost)
+    .get('/search_post/:text', post.searchPosts)
     ;
 
 app.use(router.routes());

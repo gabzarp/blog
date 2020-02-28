@@ -14,6 +14,9 @@ import Login from './components/Login.vue'
 import Signup from './components/Signup.vue'
 import Profile from './components/Profile.vue'
 import Users from './components/Users.vue'
+import PostEdit from './components/PostEdit.vue'
+import PostCreate from './components/PostCreate.vue'
+import Post from './components/Post.vue'
 
 Vue.config.productionTip = false
 const routes = [
@@ -22,6 +25,9 @@ const routes = [
   { path: '/signup', component: Signup },
   { path: '/user/:id', component: Profile },
   { path: '/users', component: Users },
+  { path: '/post/:id', component: Post },
+  { path: '/edit_post/:id', component: PostEdit },
+  { path: '/create_post', component: PostCreate },
 ]
 const router = new VueRouter({routes})
 

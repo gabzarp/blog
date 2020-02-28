@@ -49,9 +49,10 @@
         .then(response=>{
           if(response.data){
             this.$session.start()
-            this.$session.set('email', this.user.email)
-            this.$session.set('name', this.user.name)
-            this.$session.set('role', this.user.role)
+            this.$session.set('_id', response.data._id)
+            this.$session.set('email', response.data.email)
+            this.$session.set('name', response.data.name)
+            this.$session.set('role', response.data.role)
             this.$router.push("/")
           }
           else{

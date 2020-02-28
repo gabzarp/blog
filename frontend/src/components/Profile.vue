@@ -11,11 +11,7 @@
               </div>
               <div class="form-group">
                 <label class='col-form-label'>Name</label>
-                <input class='form-control' required v-model="user.Name" type="Name" placeholder="Name"/>
-              </div>
-              <div class="form-group">
-                <label class='col-form-label'>Password</label>
-                <input class='form-control' required v-model="user.password" type="password" placeholder="Password"/>
+                <input class='form-control' required v-model="user.name" type="Name" placeholder="Name"/>
               </div>
               <div class="form-group">
                 <label class='col-form-label'>Role</label>
@@ -41,13 +37,22 @@
       return {
         error: '',
         user:{
-            id: this.$route.params.id,
+            _id: this.$route.params.id,
             email: '',
-            password: '',
             name: '',
             role: ''
         }
       }
+    },
+    mounted(){
+      this.axios
+        .get('http://localhost:3001/user/' + this.user._id)
+        .then((response)=>{
+          this.user = response.data
+        })
+        .catch(err=>{
+          this.error = err
+        })
     },
     methods: {
       update: function () {

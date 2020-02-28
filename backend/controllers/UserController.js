@@ -19,7 +19,9 @@ const user = {
         .then(result=>{
             if (result == null)
                 return false
-            return bcrypt.compare(ctx.request.body.password ,result.password)
+            if(bcrypt.compare(ctx.request.body.password ,result.password)){
+                return result;
+            }
         })
         .then(res => {
             ctx.body = res;
@@ -28,7 +30,7 @@ const user = {
         .catch(err => { ctx.body = 'error: ' + err; ctx.status = 500; })
     },
     updateUser: (ctx) => {
-        return ctx.db.collection('user').updateOne({ "_id": mongo.ObjectID(ctx.params.id) }, ctx.request.body)
+        return ctx.db.collection('user').updateOne({ "_id": mongo.ObjectID(ctx.params.id) }, { $set: { name: ctx.request.body.name, email: ctx.request.body.email, role: ctx.request.body.role } },{ upsert: true } )
         .then(() => {
             ctx.body = ctx.request.body;
             ctx.status = 200;
@@ -42,14 +44,6 @@ const user = {
                 ctx.status = 200;
             })
             .catch(err => { ctx.body = 'error: ' + err; ctx.status = 500; })
-    },
-    updateUser: (ctx) => {
-        return ctx.db.collection('user').updateOne({ "_id": mongo.ObjectID(ctx.params.id) }, ctx.request.body)
-        .then(() => {
-            ctx.body = ctx.request.body;
-            ctx.status = 200;
-        })
-        .catch(err => { ctx.body = 'error: ' + err; ctx.status = 500; })
     },
     deleteUser: (ctx) => {
         return ctx.db.collection('user').deleteOne({ "_id": mongo.ObjectID(ctx.params.id) })

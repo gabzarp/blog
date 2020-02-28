@@ -9,11 +9,17 @@
               <li class="nav-item">
                 <router-link to="/" class="nav-link navbar-nav-principal-link text-dark text-uppercase h3">Home</router-link>
               </li>
-              <li class="nav-item">
+              <li v-if='user.role == "admin"' class="nav-item">
                 <router-link to="/users" class="nav-link navbar-nav-principal-link text-dark text-uppercase h3">Users</router-link>
               </li>
-              <li class="nav-item">
+              <li v-if='!user.name' class="nav-item">
                 <router-link to="/login" class="nav-link navbar-nav-principal-link text-dark text-uppercase h3">Login</router-link>
+              </li>
+              <li v-if='user' class="nav-item">
+                <router-link :to="'/user/'+user._id" class="nav-link navbar-nav-principal-link text-dark text-uppercase h3">{{user.name}}</router-link>
+              </li>
+              <li v-if='user.name' class="nav-item">
+                <a v-on:click="logout" href='' class="nav-link navbar-nav-principal-link text-dark text-uppercase h3">Logout</a>
               </li>
             </ul>
           </div>
@@ -27,7 +33,26 @@
 <script>
 export default {
   name: 'App',
-  
+  data () {
+    return {
+      user: {
+        _id:'',
+        name:'',
+        role:'',
+      }
+    }
+  }, 
+  updated () {
+    this.user.name = this.$session.get('name')
+    this.user.role = this.$session.get('role')
+    this.user._id = this.$session.get('_id')
+  },
+  methods:{
+    logout: function () {
+      this.$session.destroy()
+      this.$router.push('/')
+    }
+  }
 }
 </script>
 
