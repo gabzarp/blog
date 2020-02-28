@@ -29,7 +29,6 @@
 </template>
 <script>
   export default {
-  name: 'Sign up',
     data() {
       return {
         error: '',

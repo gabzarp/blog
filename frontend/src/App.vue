@@ -36,9 +36,9 @@ export default {
   data () {
     return {
       user: {
-        _id:'',
-        name:'',
-        role:'',
+        _id: this.$session.get('_id'),
+        name: this.$session.get('name'),
+        role: this.$session.get('role'),
       }
     }
   }, 

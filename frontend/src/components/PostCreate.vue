@@ -25,7 +25,6 @@
 </template>
 <script>
   export default {
-  name: 'Post create',
     data() {
       return {
         error: '',
@@ -33,15 +32,11 @@
           title: '',
           text: '',
           user: {
-            _id :'',
-            name:''
+            _id :this.$session.get('_id'),
+            name:this.$session.get('name')
           }
         }
       }
-    },
-    mounted(){
-        this.post.user._id = this.$session.get('_id')
-        this.post.user.name = this.$session.get('name')
     },
     methods: {
       create: function () {

@@ -14,21 +14,22 @@
         </div>
         <div class="row">
           <div v-for="post in posts" class="col-12 pb-5" :key="post.id">
-            <div>              
-              <h3>{{post.title}}</h3>
-              <p>{{post.text.substring(0,150)}}</p>
-                <div class="col-10 d-flex justify-content-between">
-                  <p>Date: {{post.date}}</p>
-                  <p>Author: {{post.user.name}}</p>
-                </div>
-              <div class='d-flex justify-content-between'>
-                <router-link :to="'/post/' + post._id" class='button border-0 px-3 py-2 bg-purple text-white'>View</router-link>
-                <div v-if='(post.user._id == user._id && user._id) || user.role == "admin"' class='d-flex'>
-                  <router-link :to="'/edit_post/' + post._id" class='button border-0 px-3 py-2 bg-info text-white mr-2'>Edit</router-link>
-                  <a v-on:click="deletePost(post._id)" href="" class='button border-0 px-3 py-2 bg-danger text-white'>Delete</a>
-                </div>
+            <h3>{{post.title}}</h3>
+            <p>{{post.text.substring(0,150)}}</p>
+              <div class="d-flex justify-content-between">
+                <p>Date: {{post.date}}</p>
+                <p>Author: {{post.user.name}}</p>
+              </div>
+            <div class='d-flex justify-content-between'>
+              <router-link :to="'/post/' + post._id" class='button border-0 px-3 py-2 bg-purple text-white'>View</router-link>
+              <div v-if='(post.user._id == user._id && user._id) || user.role == "admin"' class='d-flex'>
+                <router-link :to="'/edit_post/' + post._id" class='button border-0 px-3 py-2 bg-info text-white mr-2'>Edit</router-link>
+                <a v-on:click="deletePost(post._id)" href="" class='button border-0 px-3 py-2 bg-danger text-white'>Delete</a>
               </div>
             </div>
+          </div>
+          <div v-if="posts.length == 0" class="col-12 pb-4">
+              <h2>Nenhum post cadastrado</h2>
           </div>
         </div>
       </div>
@@ -38,23 +39,17 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  },
   data () {
     return {
-      posts: null,
+      posts: [],
       user:{
-        _id:'',
-        role:''
+        _id:this.$session.get('_id'),
+        role:this.$session.get('role')
       },
       searchText:''
     }
   },
   mounted () {
-    this.user._id = this.$session.get('_id')
-    this.user.role = this.$session.get('role')
     this.axios
     .get('http://localhost:3001/posts')
     .then(response => {this.posts = response.data})

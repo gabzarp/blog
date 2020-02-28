@@ -32,15 +32,11 @@
 </template>
 <script>
   export default {
-  name: 'Update',
     data() {
       return {
         error: '',
         user:{
             _id: this.$route.params.id,
-            email: '',
-            name: '',
-            role: ''
         }
       }
     },
