@@ -9,18 +9,18 @@ Vue.use(VueRouter)
 
 Vue.prototype.axios = axios
 
-import Home from './components/Home.vue'
-import Login from './components/Login.vue'
-import Signup from './components/Signup.vue'
-import Profile from './components/Profile.vue'
-import Users from './components/Users.vue'
-import PostEdit from './components/PostEdit.vue'
-import PostCreate from './components/PostCreate.vue'
-import Post from './components/Post.vue'
+import Posts from './components/post/Posts.vue'
+import Login from './components/user/Login.vue'
+import Signup from './components/user/Signup.vue'
+import Profile from './components/user/Profile.vue'
+import Users from './components/user/Users.vue'
+import PostEdit from './components/post/PostEdit.vue'
+import PostCreate from './components/post/PostCreate.vue'
+import Post from './components/post/Post.vue'
 
 Vue.config.productionTip = false
 const routes = [
-  { path: '/', component: Home },
+  { path: '/', component: Posts },
   { path: '/login', component: Login },
   { path: '/signup', component: Signup },
   { path: '/user/:id', component: Profile },

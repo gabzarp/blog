@@ -13,6 +13,11 @@
             <p>Author: {{post.user.name}}</p>
           </div>
         </div>
+        <div class="row justify-content-center">
+          <div class="col-10">
+            <router-link to="/"  class='button border-0 px-3 py-2 bg-info text-white mr-2'>Back</router-link>
+          </div>
+        </div>
       </div>
     </section>
 </template>
